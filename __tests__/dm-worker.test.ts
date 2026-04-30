@@ -8,23 +8,37 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 
 // ─── Mocks ─────────────────────────────────────────────────────────────────────
 
-// Mock Prisma
-const mockPrisma = {
-  automation: {
-    findMany: vi.fn(),
+// Use vi.hoisted so these are available inside vi.mock factories (which are hoisted)
+const {
+  mockPrisma,
+  mockSendDM,
+  mockDecryptToken,
+  mockMatchKeywords,
+  mockCheckRateLimit,
+  mockIncrementDMCounter,
+  mockQueueAdd,
+} = vi.hoisted(() => ({
+  mockPrisma: {
+    automation: {
+      findMany: vi.fn(),
+    },
+    dmLog: {
+      findUnique: vi.fn(),
+      create: vi.fn(),
+    },
   },
-  dmLog: {
-    findUnique: vi.fn(),
-    create: vi.fn(),
-  },
-};
+  mockSendDM: vi.fn(),
+  mockDecryptToken: vi.fn(),
+  mockMatchKeywords: vi.fn(),
+  mockCheckRateLimit: vi.fn(),
+  mockIncrementDMCounter: vi.fn(),
+  mockQueueAdd: vi.fn(),
+}));
 
 vi.mock("@/lib/db/client", () => ({
   prisma: mockPrisma,
 }));
 
-// Mock Meta API client
-const mockSendDM = vi.fn();
 vi.mock("@/lib/meta/client", () => ({
   sendDM: mockSendDM,
   MetaApiError: class MetaApiError extends Error {
@@ -37,28 +51,19 @@ vi.mock("@/lib/meta/client", () => ({
   },
 }));
 
-// Mock OAuth
-const mockDecryptToken = vi.fn();
 vi.mock("@/lib/meta/oauth", () => ({
   decryptToken: mockDecryptToken,
 }));
 
-// Mock keyword matcher
-const mockMatchKeywords = vi.fn();
 vi.mock("@/lib/utils/keyword-matcher", () => ({
   matchKeywords: mockMatchKeywords,
 }));
 
-// Mock rate limiter
-const mockCheckRateLimit = vi.fn();
-const mockIncrementDMCounter = vi.fn();
 vi.mock("@/lib/utils/rate-limiter", () => ({
   checkRateLimit: mockCheckRateLimit,
   incrementDMCounter: mockIncrementDMCounter,
 }));
 
-// Mock BullMQ queue
-const mockQueueAdd = vi.fn();
 vi.mock("@/lib/queue/client", () => ({
   getDMQueue: () => ({
     add: mockQueueAdd,
@@ -67,18 +72,20 @@ vi.mock("@/lib/queue/client", () => ({
 }));
 
 // Mock BullMQ Worker
-vi.mock("bullmq", () => ({
-  Worker: vi.fn().mockImplementation((_name: string, processor: unknown) => {
-    // Store the processor so we can call it in tests
+vi.mock("bullmq", () => {
+  function MockWorker(_name: string, processor: unknown) {
     (global as Record<string, unknown>).__dmWorkerProcessor = processor;
     return {
       on: vi.fn(),
       close: vi.fn(),
     };
-  }),
-  Queue: vi.fn(),
-  Job: vi.fn(),
-}));
+  }
+  return {
+    Worker: MockWorker,
+    Queue: vi.fn(),
+    Job: vi.fn(),
+  };
+});
 
 // Import after mocks are set up
 import { createDMWorker } from "../lib/queue/dm-worker";

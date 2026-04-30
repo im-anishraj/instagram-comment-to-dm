@@ -6,25 +6,27 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-// Mock ioredis before importing the module
-const mockGet = vi.fn();
-const mockIncr = vi.fn();
-const mockExpire = vi.fn();
-const mockDel = vi.fn();
-const mockExec = vi.fn();
+// Use vi.hoisted so these are available inside vi.mock factories
+const { mockGet, mockIncr, mockExpire, mockDel, mockExec } = vi.hoisted(() => ({
+  mockGet: vi.fn(),
+  mockIncr: vi.fn(),
+  mockExpire: vi.fn(),
+  mockDel: vi.fn(),
+  mockExec: vi.fn(),
+}));
 
 vi.mock("ioredis", () => {
-  return {
-    default: vi.fn().mockImplementation(() => ({
-      get: mockGet,
-      del: mockDel,
-      pipeline: () => ({
-        incr: mockIncr,
-        expire: mockExpire,
-        exec: mockExec,
-      }),
-    })),
-  };
+  const MockRedis = vi.fn().mockImplementation(function (this: Record<string, unknown>) {
+    this.get = mockGet;
+    this.del = mockDel;
+    this.pipeline = () => ({
+      incr: mockIncr,
+      expire: mockExpire,
+      exec: mockExec,
+    });
+    return this;
+  });
+  return { default: MockRedis };
 });
 
 // Set env before importing
