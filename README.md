@@ -8,7 +8,7 @@
 </p>
 
 <p>
-  <a href="https://github.com/YOUR_USERNAME/instagram-comment-to-dm/stargazers">
+  <a href="https://github.com/im-anishraj/instagram-comment-to-dm/stargazers">
     <img src="https://img.shields.io/github/stars/YOUR_USERNAME/instagram-comment-to-dm?style=flat-square&color=6366F1" alt="Stars"/>
   </a>
   <a href="https://github.com/im-anishraj/instagram-comment-to-dm/blob/main/LICENSE">
