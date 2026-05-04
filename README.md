@@ -11,7 +11,7 @@
   <a href="https://visitor-badge.laobi.icu/badge?page_id=im-anishraj.instagram-comment-to-dm">
   <img src="https://visitor-badge.laobi.icu/badge?page_id=im-anishraj.instagram-comment-to-dm" />
 </a>
-    <img src="https://img.shields.io/github/stars/YOUR_USERNAME/instagram-comment-to-dm?style=flat-square&color=6366F1" alt="Stars"/>
+    <img src="https://img.shields.io/github/stars/im-anishraj/instagram-comment-to-dm?style=flat-square&color=6366F1" alt="Stars"/>
   </a>
   <a href="https://github.com/im-anishraj/instagram-comment-to-dm/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT License"/>
