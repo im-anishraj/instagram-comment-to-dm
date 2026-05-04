@@ -11,11 +11,11 @@
   <a href="https://github.com/YOUR_USERNAME/instagram-comment-to-dm/stargazers">
     <img src="https://img.shields.io/github/stars/YOUR_USERNAME/instagram-comment-to-dm?style=flat-square&color=6366F1" alt="Stars"/>
   </a>
-  <a href="https://github.com/YOUR_USERNAME/instagram-comment-to-dm/blob/main/LICENSE">
+  <a href="https://github.com/im-anishraj/instagram-comment-to-dm/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT License"/>
   </a>
-  <a href="https://github.com/YOUR_USERNAME/instagram-comment-to-dm/issues">
-    <img src="https://img.shields.io/github/issues/YOUR_USERNAME/instagram-comment-to-dm?style=flat-square" alt="Issues"/>
+  <a href="https://github.com/im-anishraj/instagram-comment-to-dm/issues">
+    <img src="https://img.shields.io/github/issues/im-anishraj/instagram-comment-to-dm?style=flat-square" alt="Issues"/>
   </a>
   <img src="https://img.shields.io/badge/Meta%20Graph%20API-v19%2B-blue?style=flat-square" alt="Meta Graph API"/>
   <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square" alt="Next.js 14"/>
