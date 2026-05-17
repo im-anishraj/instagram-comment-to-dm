@@ -20,7 +20,7 @@
     <img src="https://img.shields.io/github/issues/im-anishraj/instagram-comment-to-dm?style=flat-square" alt="Issues"/>
   </a>
   <img src="https://img.shields.io/badge/Meta%20Graph%20API-v19%2B-blue?style=flat-square" alt="Meta Graph API"/>
-  <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square" alt="Next.js 14"/>
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=flat-square" alt="Next.js 16"/>
 </p>
 
 <p>
@@ -75,7 +75,7 @@ User gets your message in their inbox
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - Instagram **Business or Creator** account
 - Facebook Page linked to your Instagram
 - Meta Developer App (free to create at [developers.facebook.com](https://developers.facebook.com))
@@ -85,7 +85,7 @@ User gets your message in their inbox
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/instagram-comment-to-dm.git
+git clone https://github.com/im-anishraj/instagram-comment-to-dm.git
 cd instagram-comment-to-dm
 npm install
 ```
@@ -156,7 +156,7 @@ App runs at `http://localhost:3000`.
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | Database | PostgreSQL + Prisma ORM |
 | Queue | BullMQ + Redis |
 | Auth | NextAuth.js v5 |
